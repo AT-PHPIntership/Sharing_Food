@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     *@param \Illuminate\Routing\Router $router the router
+     * @param \Illuminate\Routing\Router $router the router
      *
      * @return void
      */
