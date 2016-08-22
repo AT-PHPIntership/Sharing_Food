@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Console;
+namespace App;
 
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Database\Eloquent\Model;
 
-class Kernel extends ConsoleKernel
+class FoodsStore extends Model
 {
     /**
      * The Artisan commands provided by your application.
