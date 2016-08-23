@@ -12,7 +12,7 @@ class Food extends Model
      * @var array
      */
     protected $fillable = [
-        'name_food', 'introduce', 'accept', 'place_food_id', 'types_id', 'users_id', 'food_store_id',
+        'name_food', 'introduce', 'accept', 'place_food_id', 'types_id', 'users_id', 'food_store_id', 'comments_id',
     ];
     /**
      * Get name from role.

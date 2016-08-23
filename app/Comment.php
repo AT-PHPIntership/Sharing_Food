@@ -12,7 +12,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'body', 'users_id', 'ratings_id','foods_id',
+        'body', 'users_id', 'ratings_id',
     ];
     /**
      * Get id from Rating.
@@ -39,6 +39,6 @@ class Comment extends Model
      */
     public function foodcomment()
     {
-        return $this->belongsTo('App\Food', 'foods_id');
+        return $this->belongsTo('App\Food');
     }
 }
