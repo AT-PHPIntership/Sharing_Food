@@ -15,9 +15,9 @@ Route::get('/admin', function () {
     return view('backend.layouts.master');
 });
 
-Route::group(['middleware' => 'guard'], function(){
-	Route::get('/login',['as' => 'login', 'uses' => 'AuthController@getLogin']);
-	Route::post('/login',['uses' => 'AuthController@postLogin']);
+Route::group(['middleware' => 'guard'], function () {
+    Route::get('/login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
+    Route::post('/login', ['uses' => 'AuthController@postLogin']);
 });
 // Route::get('/', function () {
 //     return view('frontend.layouts.master');

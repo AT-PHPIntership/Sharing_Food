@@ -8,7 +8,13 @@ use App\Http\Requests;
 
 class AuthController extends Controller
 {
-    public function getLogin(){
-    	return view('login');
+    /**
+     * Display view Login
+     *
+     * @return void
+     */
+    public function getLogin()
+    {
+        return view('login');
     }
 }

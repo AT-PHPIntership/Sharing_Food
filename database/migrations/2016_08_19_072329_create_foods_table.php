@@ -24,7 +24,9 @@ class CreateFoodsTable extends Migration
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');
             $table->integer('food_store_id')->unsigned();
-            $table->foreign('food_store_id')->references('id')->on('foods_store');
+            $table->foreign('food_store_id')->references('id')->on('food_stores');
+            $table->integer('comment_id')->unsigned();
+            $table->foreign('comment_id')->references('id')->on('comments');
             $table->timestamps();
         });
     }
