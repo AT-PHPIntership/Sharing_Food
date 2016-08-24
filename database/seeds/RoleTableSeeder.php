@@ -15,7 +15,7 @@ class RoleTableSeeder extends Seeder
 
         for($i = 0; $i < 2; $i++){
         	DB::table('roles')->insert([
-        		'role'        => rand(0,1),
+        		'role'        => $faker -> randomElement($array = array ('admin','member')),
         		'created_at'      => $faker-> dateTime
         	]);
         }
