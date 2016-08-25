@@ -11,6 +11,8 @@ class Food extends Model
      *
      * @var array
      */
+    protected $table= 'foods';
+
     protected $fillable = [
         'name_food', 'introduce', 'accept', 'place_food_id', 'types_id', 'users_id', 'food_store_id', 'comments_id',
     ];

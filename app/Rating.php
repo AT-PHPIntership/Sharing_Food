@@ -11,6 +11,8 @@ class Rating extends Model
      *
      * @var array
      */
+    protected $table= 'ratings';
+
     protected $fillable = [
         'rating',
     ];

@@ -11,6 +11,8 @@ class Type extends Model
      *
      * @var array
      */
+    protected $table= 'types';
+    
     protected $fillable = [
         'type',
     ];

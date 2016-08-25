@@ -11,6 +11,8 @@ class Place extends Model
      *
      * @var array
      */
+    protected $table= 'places';
+
     protected $fillable = [
         'place',
     ];
