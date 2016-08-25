@@ -92,8 +92,8 @@ class AuthController extends Controller
                     'username' => $data['email'],
                     'email' => $data['email'],
                     'password' => bcrypt($data['pass']),
-                    'role_id' => trans('define.role_user'),
-                    'types_id' => trans('define.role_admin')
+                    'role_id' => trans('auth.role_id'),
+                    'types_id' => trans('auth.types_id')
                 ]);
             if (!empty($result)) {
                 return response()->json([trans('auth.mes') => trans('auth.success_register'), trans('auth.allow') =>trans('auth.true')]);

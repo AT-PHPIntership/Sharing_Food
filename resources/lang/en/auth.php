@@ -33,4 +33,6 @@ return [
     'allow' => 'allow',
     'true' => 'true',
     'error_register' => 'Error register, please try again!',
+    'role_id' => '2',
+    'types_id' => '1',
 ];
