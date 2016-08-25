@@ -11,7 +11,7 @@ $('#register').on('click',function(e){
 	        data: {email: $('form #emailregister').val(), pass: $('form #passregister').val()},
 	        dataType: "json",
 	        success: function (data) {			            
-	            if(data.allow=='true'){
+	            if(data.allow==true){
 	            	alert(data.mes);
 	            	$('.login-section').click();			            	
 	            }
