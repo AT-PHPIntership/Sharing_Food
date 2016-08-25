@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('username',50);
             $table->string('email',100)->unique();
-            $table->string('password',50);
+            $table->string('password',100);
             $table->string('avatar',100);
             $table->string('fullname',100);
             $table->string('address',100);
@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->foreign('role_id')->references('id')->on('roles');
             $table->integer('types_id')->unsigned();
             $table->foreign('types_id')->references('id')->on('types');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

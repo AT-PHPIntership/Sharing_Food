@@ -23,4 +23,8 @@ return [
     'or_sign_in' => 'Or sign in with &nbsp;',
     'or_sign_up' => 'Or sign up with &nbsp;',
     'accept' => 'I accept terms and conditions',
+    'info' => 'info',
+    'error_login' => 'Login unsuccess, please help me check username and password!!',
+    'not_admin' => 'You are not admin',
+    'pass' => '12345tp',
 ];

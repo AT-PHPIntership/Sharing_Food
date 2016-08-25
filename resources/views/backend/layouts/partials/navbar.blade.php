@@ -55,16 +55,23 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ url('bower/AdminLTE/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">Thanh Phuoc</span>
+              @if(Auth::user()->avatar)
+                <img src="{{ url(config('path.avatar').Auth::user()->avatar)}}" class="user-image" alt="User Image">
+              @else
+                <img src="{{ url(config('path.avatardefault'))}}" class="user-image" alt="User Image">
+              @endif
+              <span class="hidden-xs">{{Auth::user()->username}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ url('bower/AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-
+                @if(Auth::user()->avatar)
+                  <img src="{{ url(config('path.avatar').Auth::user()->avatar)}}" class="img-circle" alt="User Image">
+                @else
+                  <img src="{{ url(config('path.avatardefault'))}}" class="img-circle" alt="User Image">
+                @endif
                 <p>
-                  Thanh Phuoc{{ trans('lang_admin.developer') }}
+                  {{Auth::user()->username}} {{ trans('lang_admin.developer') }}
                   <small>{{ trans('lang_admin.member_signin') }}</small>
                 </p>
               </li>
@@ -95,7 +102,7 @@
                   <a href="#" class="btn btn-default btn-success">{{ trans('lang_admin.profile') }}</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-danger">{{ trans('lang_admin.sign_out') }}</a>
+                  <a href="{!! route('logout') !!}" class="btn btn-default btn-danger">{{ trans('lang_admin.sign_out') }}</a>
                 </div>
               </li>
             </ul>
@@ -111,10 +118,14 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ url('bower/AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          @if(Auth::user()->avatar)
+            <img src="{{ url(config('path.avatar').Auth::user()->avatar)}}" class="img-circle" alt="User Image">
+          @else
+            <img src="{{ url(config('path.avatardefault'))}}" class="img-circle" alt="User Image">
+          @endif
         </div>
         <div class="pull-left info">
-          <p>Thanh Phuoc</p>
+          <p>{{Auth::user()->username}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('lang_admin.online') }}</a>
         </div>
       </div>
