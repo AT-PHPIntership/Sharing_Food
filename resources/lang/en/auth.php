@@ -27,4 +27,12 @@ return [
     'error_login' => 'Login unsuccess, please help me check username and password!!',
     'not_admin' => 'You are not admin',
     'pass' => '12345tp',
+    'mes' => 'mes',
+    'error_input_value' => 'Please input value for text',
+    'success_register' => 'Register success, welcome for you',
+    'allow' => 'allow',
+    'true' => 'true',
+    'error_register' => 'Error register, please try again!',
+    'role_id' => '2',
+    'types_id' => '1',
 ];

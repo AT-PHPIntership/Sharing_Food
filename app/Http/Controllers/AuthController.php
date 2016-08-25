@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\User;
 use Auth;
@@ -73,5 +73,33 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect('/login');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request input value
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function postRegister(Request $request)
+    {
+        $data=$request->all();
+        if (!$data) {
+            return response()->json([trans('auth.mes') => trans('auth.error_input_value')]);
+        } else {
+            $result=User::create([
+                    'username' => $data['email'],
+                    'email' => $data['email'],
+                    'password' => bcrypt($data['pass']),
+                    'role_id' => trans('auth.role_id'),
+                    'types_id' => trans('auth.types_id')
+                ]);
+            if (!empty($result)) {
+                return response()->json([trans('auth.mes') => trans('auth.success_register'), trans('auth.allow') =>trans('auth.true')]);
+            } else {
+                return response()->json([trans('auth.mes') => trans('auth.error_register')]);
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@
 Route::group(['middleware'=>['guest']], function () {
     Route::get('/login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
     Route::post('/login', ['uses' => 'AuthController@postLogin']);
+    Route::post('/register', ['as' => 'register','uses' => 'AuthController@postRegister']);
     /* Login with social network */
     Route::get('social/facebook', ['as'=>'facebook','uses'=>'FacebookController@getSocialAuth']);
     Route::get('social/callback/facebook', ['uses'=>'FacebookController@getSocialAuthCallback']);

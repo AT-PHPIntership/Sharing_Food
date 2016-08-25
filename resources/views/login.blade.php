@@ -24,7 +24,7 @@
 		<div class="section-out">
 			<section class="login-section">
 			<div class="login">
-				<form action="{!! route('login') !!}" method="POST" role="form">
+				<form action="{!! route('login') !!}" method="POST" role="form" id="login">
 					<input type="hidden" name="_token" value="{{ Session::token() }}" />
 					<ul class="ul-list">
 						<li><input type="email" required class="input" placeholder="Your Email" name="email" id="email" /><span class="icon" ><i class="fa fa-user"></i></span></li>
@@ -47,12 +47,12 @@
 
 			<section class="signup-section">
 				<div class="login">
-					<form action="">
+					<form action="" method="POST">
 						<ul class="ul-list">
-							<li><input type="email" required class="input" placeholder="Your Email"/><span class="icon"><i class="fa fa-user"></i></span></li>
-							<li><input type="password" required class="input" placeholder="Password"/><span class="icon"><i class="fa fa-lock"></i></span></li>
+							<li><input type="email" required class="input" placeholder="Your Email" id="emailregister" /><span class="icon"><i class="fa fa-user"></i></span></li>
+							<li><input type="password" required class="input" placeholder="Password" id="passregister" /><span class="icon"><i class="fa fa-lock"></i></span></li>
 							<li><input type="checkbox" id="check1"> <label for="check1">{{ trans('auth.accept') }}</label></li>
-							<li><input type="submit" value="{{ trans('auth.btn_register') }}" class="btn"></li>
+							<li><input type="submit" value="{{ trans('auth.btn_register') }}" class="btn" id="register"></li>
 						</ul>
 						<input type="hidden" name="_token" value="{{ Session::token() }}" />
 					</form>
@@ -62,6 +62,7 @@
 					<a href="{!! route('facebook')!!}" class="fb"><i class="fa fa-facebook"></i></a>
 					<a href="{!! route('google')!!}" class="gp"><i class="fa fa-google-plus"></i></a>
 				</div>
+				<meta name="_token" content="{!! csrf_token() !!}" />
 			</section>
 		</div>
 
@@ -70,6 +71,8 @@
 	<script type="text/javascript" src="{{ url('backend/js/admin.js') }}"></script>
 	<script type="text/javascript">
 		var timeout = {!! json_encode(config('define.timeout')) !!};
-	</script>    
+		var path_register = {!! json_encode(config('path.path_register')) !!};
+	</script>
+	<script type="text/javascript" src="{{ url('backend/js/register.js') }}"></script>    
 </body>
 </html>
