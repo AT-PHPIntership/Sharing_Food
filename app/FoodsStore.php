@@ -11,19 +11,27 @@ class FoodsStore extends Model
      *
      * @var array
      */
-    protected $commands = [
-        // Commands\Inspire::class,
-    ];
+    protected $table= 'food_stores';
 
+    protected $fillable = [
+        'name', 'information', 'users_id',
+    ];
     /**
-     * Define the application's command schedule.
+     * Get id from User.
      *
-     * @param \Illuminate\Console\Scheduling\Schedule $schedule the schedule
-     *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    protected function schedule(Schedule $schedule)
+    public function foodstoreuser()
     {
-        $schedule = null;
+        return $this->belongsTo('App\User', 'users_id');
+    }
+    /**
+     * Get name from Food.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function foodimage()
+    {
+        return $this->hasMany('App\Food');
     }
 }
