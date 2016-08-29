@@ -1,16 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class User extends Authenticatable
+class User extends Model implements Transformable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    use TransformableTrait;
 
     protected $table= 'users';
     
