@@ -25,6 +25,9 @@ Route::get('/logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);
 /* Link Admin can access */
 Route::group(['middleware' => ['auth','roleadmin']], function () {
     Route::get('/admin', ['as' => 'admin', 'uses' => 'AuthController@getAdmin']);
+    Route::group(['prefix'=>'admin', 'namespace' => 'Backend'], function () {
+        Route::resource('user', 'UserController');
+    });
 });
 /* Link User can access */
 Route::group(['middleware' => 'auth'], function () {
