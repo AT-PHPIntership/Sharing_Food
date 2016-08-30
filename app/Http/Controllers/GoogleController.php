@@ -7,17 +7,22 @@ use App\Http\Controllers\Controller;
 use Socialite;
 use Auth;
 use App\Http\Requests;
-use App\User;
+use App\Models\User;
+use App\Repositories\Eloquent\UserRepositoryEloquent;
 
 class GoogleController extends Controller
 {
+    protected $googlerepo;
     /**
-     * Construct a GoogleController
+     * Create a new authentication controller instance.
+     *
+     * @param UserRepositoryEloquent $user the user repository
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepositoryEloquent $user)
     {
+        $this->googlerepo = $user;
         $this->middleware('guest');
     }
     /**
@@ -54,7 +59,7 @@ class GoogleController extends Controller
      */
     private function findOrCreateUser($googleUser)
     {
-        $authUser= User::where('email', '=', $googleUser->email)->first();
+        $authUser= $this->googlerepo->where('email', '=', $googleUser->email);
 
         if ($authUser) {
             return $authUser;
@@ -70,13 +75,13 @@ class GoogleController extends Controller
      */
     private function createUser($user)
     {
-        $user=User::create([
+        $user=$this->googlerepo->create([
                 'username'=>$user->name,
                 'email'=>$user->email,
                 'avatar'=>$user->avatar,
                 'password' => bcrypt(trans('auth.pass')),
-                'role_id' => trans('auth.role_user'),
-                'types_id' => trans('auth.role_admin'),
+                'role_id' => trans('auth.role_id'),
+                'types_id' => trans('auth.types_id'),
             ]);
         return $user;
     }

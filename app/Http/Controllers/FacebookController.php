@@ -7,17 +7,22 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Auth;
 use Socialite;
-use App\User;
+use App\Models\User;
+use App\Repositories\Eloquent\UserRepositoryEloquent;
 
 class FacebookController extends Controller
 {
+    protected $facerepo;
     /**
-     * Construct a FacebookController
+     * Create a new authentication controller instance.
+     *
+     * @param UserRepositoryEloquent $user the user repository
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepositoryEloquent $user)
     {
+        $this->facerepo = $user;
         $this->middleware('guest');
     }
     /**
@@ -54,7 +59,7 @@ class FacebookController extends Controller
      */
     private function findOrCreateUser($facebookUser)
     {
-        $authUser= User::where('email', '=', $facebookUser->user['email'])->first();
+        $authUser= $this->facerepo->where('email', '=', $facebookUser->user['email']);
         if ($authUser) {
             return $authUser;
         }
@@ -69,13 +74,13 @@ class FacebookController extends Controller
      */
     private function createUser($user)
     {
-        $user=User::create([
+        $user=$this->facerepo->create([
                 'username'=>$user->name,
                 'email'=>$user->email,
                 'avatar'=>$user->avatar,
                 'password' => bcrypt(trans('auth.pass')),
-                'role_id' => trans('auth.role_user'),
-                'types_id' => trans('auth.role_admin'),
+                'role_id' => trans('auth.role_id'),
+                'types_id' => trans('auth.types_id'),
             ]);
         return $user;
     }
