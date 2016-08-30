@@ -144,7 +144,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-user"></i> {{ trans('lang_admin.list_users') }}</a></li>
+            <li><a href="{{ route('admin.user.index') }}"><i class="fa fa-user"></i> {{ trans('lang_admin.list_users') }}</a></li>
             <li><a href="#"><i class="fa fa-eye"></i> {{ trans('lang_admin.list_roles') }}</a></li>
           </ul>
         </li>
