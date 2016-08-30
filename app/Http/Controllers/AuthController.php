@@ -5,11 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\User;
 use Auth;
+use App\Repositories\Eloquent\UserRepositoryEloquent;
 
 class AuthController extends Controller
 {
+    protected $repository;
+
+    /**
+     * Create a new authentication controller instance.
+     *
+     * @param UserRepositoryEloquent $user the user repository
+     *
+     * @return void
+     */
+    public function __construct(UserRepositoryEloquent $user)
+    {
+        // $this->middleware('guest');
+        $this->repository = $user;
+    }
+
     /**
      * Display view Login
      *
@@ -88,7 +103,7 @@ class AuthController extends Controller
         if (!$data) {
             return response()->json([trans('auth.mes') => trans('auth.error_input_value')]);
         } else {
-            $result=User::create([
+            $result=$this->repository->create([
                     'username' => $data['email'],
                     'email' => $data['email'],
                     'password' => bcrypt($data['pass']),

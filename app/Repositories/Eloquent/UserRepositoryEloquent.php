@@ -36,4 +36,17 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+    /**
+     * Function where
+     *
+     * @param string $field   field
+     * @param string $value   value
+     * @param array  $columns columns
+     *
+     * @return mixed
+     */
+    public function where($field, $value = null, $columns = ['email'])
+    {
+        return $this->model->where($field, '=', $columns)->first();
+    }
 }
