@@ -32,7 +32,7 @@
                             <td>{{preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($item->phone)), 2)}}</td>
                             <td>{{$item->birthday}}</td>
                             <td>
-                                <a href="#"><button class="btn btn-info">{!!trans('lang_admin_manager_user.edit' )!!}</button></a>
+                                <a href="{{ route('admin.user.edit',$item ->id)}}"><button class="btn btn-info">{!!trans('lang_admin_manager_user.edit' )!!}</button></a>
                             </td>
                             <td>
                                 <a href="#"><button class="btn btn-danger">{!!trans('lang_admin_manager_user.delete' )!!}</button></a>

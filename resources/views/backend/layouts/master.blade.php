@@ -6,10 +6,12 @@
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
     @include('backend.layouts.partials.navbar')
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Main content -->
       <section class="content">
+        @include('backend.layouts.partials.message')
         @yield('content')
       </section>
       <!-- /.content -->
