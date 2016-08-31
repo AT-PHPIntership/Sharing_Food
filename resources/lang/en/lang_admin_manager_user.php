@@ -22,6 +22,7 @@ return [
     'birthday' => 'Birthday',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'cancel' => 'Cancel',
     'info' => 'info',
     'success' => 'Success: ',
     'danger' => 'Dangger: ',
@@ -39,4 +40,10 @@ return [
     'role' => 'Role',
     'avatar' => 'Avatar',
     'update_user' => 'Update User',
+    'title_delete' => 'Delete User',
+    'confirm' => 'Are you sure?',
+    'delete_success' => 'You delete user successfully',
+    'success_cf' => 'success',
+    'danger_cf' => 'danger',
+    'delete_fail' => 'Error delete User',
 ];
