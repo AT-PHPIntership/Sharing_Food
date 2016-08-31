@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\UserEditRequest;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\UserRepositoryEloquent;
 use App\Repositories\Eloquent\RoleRepositoryEloquent;
@@ -47,27 +48,55 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.users.add');
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param \Illuminate\Http\UserRequest $request User request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(UserRequest $request)
     {
-        //
+        $data = $request->all();
+        $img = null;
+        if ($request->hasFile('image')) {
+            $img = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image') -> move(config('path.avatar'), $img);
+        }
+        $data['image'] = $img;
+        $data['password'] = bcrypt($request->password);
+        $data['birthday'] = date(config('path.formatdate'), strtotime($request->birthday));
+        $data['role_id'] = config('define.role_admin');
+        $data['types_id'] = config('define.role_admin');
+        try {
+            $this->userrepo->create($data);
+            Session::flash(trans('lang_admin_manager_user.success_cf'), trans('lang_admin_manager_user.successful_message'));
+            return redirect()->route('admin.user.index');
+        } catch (Exception $e) {
+            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.error_message'));
+            return redirect()->route('admin.user.create');
+        }
     }
 
     /**
      * Display the specified resource.
      *
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        //
+        try {
+            $user = $this->userrepo->find($id);
+            return  view('backend.users.show', compact('user'));
+        } catch (Exception $ex) {
+            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.no_id'));
+            return redirect()->route('admin.user.index');
+        }
     }
 
     /**
