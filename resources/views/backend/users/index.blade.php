@@ -5,7 +5,7 @@
 <div class="row">
 	<h2 class="text-left">{{trans('lang_admin_manager_user.user_list')}}</h2><br>
     <div class="box box-success">
-    <div class="col-md-12"></div>
+    <div class="col-md-12" align="center"><a href="{{ route('admin.user.create') }}" class="btn btn-primary" >Add User</a></div>
     <div class="col-md-12">
         <div class="table-responsive">
             <table id="list_users" class="table table-bordered table-hover" cellspacing="0" width="100%">
@@ -26,11 +26,11 @@
                         @foreach($users as $item)
                         <tr>
                             <td>{!! $index++ !!}</td>
-                            <td><a href="#">{{$item->username}}</a></td>
+                            <td><a href="{{ route('admin.user.show',$item ->id) }}">{{$item->username}}</a></td>
                             <td>{{$item->fullname}}</td>
                             <td>{{$item->address}}</td>
                             <td>{{preg_replace('/\d{3}/', '$0-', str_replace('.', null, trim($item->phone)), 2)}}</td>
-                            <td>{{$item->birthday}}</td>
+                            <td>{!! date(config('path.formatdate'), strtotime($item->bithday)) !!}</td>
                             <td>
                                 <a href="{{ route('admin.user.edit',$item ->id)}}"><button class="btn btn-info">{!!trans('lang_admin_manager_user.edit' )!!}</button></a>
                             </td>
