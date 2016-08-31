@@ -84,7 +84,7 @@ class UserController extends Controller
             $roleuser = $this->rolerepo->all();
             return view('backend.users.edit', compact('list', 'roleuser'));
         } catch (Exception $ex) {
-            Session::flash('danger', trans('lang_admin_manager_user.no_id'));
+            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.no_id'));
             return redirect()->route('admin.user.index');
         }
     }
@@ -108,10 +108,10 @@ class UserController extends Controller
         }
         $list = $this->userrepo->find($id);
         if (empty($list)) {
-            Session::flash('danger', trans('lang_admin_manager_user.danger_edit'));
+            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.danger_edit'));
         } else {
             $this->userrepo->update($data, $id);
-            Session::flash('success', trans('lang_admin_manager_user.edit_success'));
+            Session::flash(trans('lang_admin_manager_user.success_cf'), trans('lang_admin_manager_user.edit_success'));
         }
         return redirect() -> route('admin.user.index');
     }
@@ -119,10 +119,28 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        try {
+            $count = $this->userrepo->find($id);
+            if (!empty($count)) {
+                $result = $this->userrepo->delete($id);
+                if ($result) {
+                    Session::flash(trans('lang_admin_manager_user.success_cf'), trans('lang_admin_manager_user.delete_success'));
+                } else {
+                    Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.delete_fail'));
+                }
+            } else {
+                Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.delete_fail'));
+            }
+            return redirect() -> route('admin.user.index');
+        } catch (ModelNotFoundException $ex) {
+            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.no_id'));
+            return redirect() -> route('admin.user.index');
+        }
     }
 }
