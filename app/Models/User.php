@@ -31,7 +31,7 @@ class User extends Authenticatable implements Transformable
      */
     public function foodstore()
     {
-        return $this->hasMany('App\Food_Store');
+        return $this->hasMany('App\Models\Food_Store');
     }
     /**
      * Get id from role.
@@ -40,7 +40,7 @@ class User extends Authenticatable implements Transformable
      */
     public function role()
     {
-        return $this->hasOne('App\Role', 'role_id');
+        return $this->hasOne('App\Models\Role', 'role_id');
     }
      /**
      * Get comment from Comment.
@@ -49,7 +49,7 @@ class User extends Authenticatable implements Transformable
      */
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Models\Comment');
     }
      /**
      * Get food from Food.
@@ -58,7 +58,7 @@ class User extends Authenticatable implements Transformable
      */
     public function food()
     {
-        return $this->hasMany('App\Food');
+        return $this->hasMany('App\Models\Food');
     }
     /**
      * Get id from Type.
@@ -67,6 +67,6 @@ class User extends Authenticatable implements Transformable
      */
     public function type()
     {
-        return $this->hasOne('App\Type', 'types_id');
+        return $this->hasOne('App\Models\Type', 'types_id');
     }
 }

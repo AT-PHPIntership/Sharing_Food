@@ -27,6 +27,6 @@ class Place extends Model implements Transformable
      */
     public function placefoods()
     {
-        return $this->hasMany('App\Food');
+        return $this->hasMany('App\Models\Food');
     }
 }

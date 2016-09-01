@@ -27,7 +27,7 @@ class Comment extends Model implements Transformable
      */
     public function rating()
     {
-        return $this->hasOne('App\Rating', 'ratings_id');
+        return $this->hasOne('App\Models\Rating', 'ratings_id');
     }
     /**
      * Get id from User.
@@ -36,7 +36,7 @@ class Comment extends Model implements Transformable
      */
     public function usercomment()
     {
-        return $this->belongsTo('App\User', 'users_id');
+        return $this->belongsTo('App\Models\User', 'users_id');
     }
     /**
      * Get id from Food.
@@ -45,6 +45,6 @@ class Comment extends Model implements Transformable
      */
     public function foodcomment()
     {
-        return $this->belongsTo('App\Food');
+        return $this->belongsTo('App\Models\Food');
     }
 }

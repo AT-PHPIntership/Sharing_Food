@@ -27,6 +27,6 @@ class Type extends Model implements Transformable
      */
     public function foodtype()
     {
-        return $this->hasMany('App\Food');
+        return $this->hasMany('App\Models\Food');
     }
 }
