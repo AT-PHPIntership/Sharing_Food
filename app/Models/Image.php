@@ -27,6 +27,6 @@ class Image extends Model implements Transformable
      */
     public function foodimage()
     {
-        return $this->belongsTo('App\Food', 'foods_id');
+        return $this->belongsTo('App\Models\Food', 'foods_id');
     }
 }

@@ -27,7 +27,7 @@ class FoodsStore extends Model implements Transformable
      */
     public function foodstoreuser()
     {
-        return $this->belongsTo('App\User', 'users_id');
+        return $this->belongsTo('App\Models\User', 'users_id');
     }
     /**
      * Get name from Food.
@@ -36,6 +36,6 @@ class FoodsStore extends Model implements Transformable
      */
     public function foodimage()
     {
-        return $this->hasMany('App\Food');
+        return $this->hasMany('App\Model\Food');
     }
 }

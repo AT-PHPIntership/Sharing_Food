@@ -18,7 +18,7 @@ class Food extends Model implements Transformable
     protected $table= 'foods';
 
     protected $fillable = [
-        'name_food', 'introduce', 'accept', 'place_food_id', 'types_id', 'users_id', 'food_store_id', 'comments_id',
+        'name_food', 'introduce', 'accept', 'place_food_id', 'types_id', 'users_id', 'food_store_id', 'comment_id',
     ];
     /**
      * Get name from role.
@@ -27,7 +27,7 @@ class Food extends Model implements Transformable
      */
     public function images()
     {
-        return $this->hasMany('App\Image');
+        return $this->hasMany('App\Models\Image');
     }
     /**
      * Get id from Comment.
@@ -36,7 +36,7 @@ class Food extends Model implements Transformable
      */
     public function comments()
     {
-        return $this->hasMany('App\Comment', 'comments_id');
+        return $this->hasMany('App\Models\Comment', 'comments_id');
     }
     /**
      * Get id from type.
@@ -45,7 +45,7 @@ class Food extends Model implements Transformable
      */
     public function types()
     {
-        return $this->belongsTo('App\Type', 'types_id');
+        return $this->belongsTo('App\Models\Type', 'types_id');
     }
     /**
      * Get id from User.
@@ -54,7 +54,7 @@ class Food extends Model implements Transformable
      */
     public function usersid()
     {
-        return $this->belongsTo('App\User', 'users_id');
+        return $this->belongsTo('App\Models\User', 'users_id');
     }
     /**
      * Get id from Place.
@@ -63,7 +63,7 @@ class Food extends Model implements Transformable
      */
     public function places()
     {
-        return $this->belongsTo('App\Place', 'place_food_id');
+        return $this->belongsTo('App\Models\Place', 'place_food_id');
     }
     /**
      * Get id from Food_Store.
@@ -72,6 +72,6 @@ class Food extends Model implements Transformable
      */
     public function foodsstore()
     {
-        return $this->belongsTo('App\Food_Store', 'food_store_id');
+        return $this->belongsTo('App\Models\FoodsStore', 'food_store_id');
     }
 }

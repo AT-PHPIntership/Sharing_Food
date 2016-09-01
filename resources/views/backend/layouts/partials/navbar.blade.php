@@ -156,7 +156,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-heart"></i> {{ trans('lang_admin.list_foods') }}</a></li>
+            <li><a href="{{ route('admin.food.index') }}"><i class="fa fa-heart"></i> {{ trans('lang_admin.list_foods') }}</a></li>
           </ul>
         </li>
         <li class="treeview">
