@@ -5,7 +5,7 @@
 <div class="row">
 	<h2 class="text-left">{{trans('lang_admin_manager_user.user_list')}}</h2><br>
     <div class="box box-success">
-    <div class="col-md-12" align="center"><a href="{{ route('admin.user.create') }}" class="btn btn-primary" >Add User</a></div>
+    <div class="col-md-12" align="center"><a href="{{ route('admin.user.create') }}" class="btn btn-primary" >{{trans('lang_admin_manager_user.add_user')}}</a></div>
     <div class="col-md-12">
         <div class="table-responsive">
             <table id="list_users" class="table table-bordered table-hover" cellspacing="0" width="100%">
