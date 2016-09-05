@@ -85,7 +85,7 @@ class FoodController extends Controller
     {
         // dd($request->all());
         try {
-            $result_place = $this->placerepo->create(['place' => $request->place]);
+            $resultPlace = $this->placerepo->create(['place' => $request->place]);
             $result = $this->foodrepo->create([
                     'name_food' => $request->name_food,
                     'introduce' => $request->introduce,
@@ -100,7 +100,7 @@ class FoodController extends Controller
                     $files = $request->file('image');
                     foreach ($files as $file) {
                         $img = time() . '_' .$request->name_food.'.'.$file->getClientOriginalExtension();
-                        $file-> move(config('path.avatar'), $img);
+                        $file-> move(config('path.foods'), $img);
                         $this->imagerepo->create([
                                 'image' => $img,
                                 'foods_id' => $result['id'],

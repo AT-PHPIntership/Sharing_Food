@@ -29,7 +29,6 @@ class FoodCreateRequest extends Request
             'place' => 'required',
             'type' => 'required',
             'food_store' => 'required',
-            // 'image' => 'mimes:jpeg,jpg,png|max:100',
             'image.*'      => 'required|image',
         ];
     }
