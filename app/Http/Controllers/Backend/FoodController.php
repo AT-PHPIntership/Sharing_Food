@@ -88,7 +88,7 @@ class FoodController extends Controller
             $result = $this->foodrepo->create([
                     'name_food' => $request->name_food,
                     'introduce' => $request->introduce,
-                    'place_food_id' => $result_Place['id'],
+                    'place_food_id' => $resultPlace['id'],
                     'types_id' => $request->type,
                     'users_id' => 1,
                     'food_store_id' => $request->food_store,
