@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\FoodEditRequest;
+use App\Http\Requests\FoodCreateRequest;
 use App\Http\Controllers\Controller;
 
 use App\Repositories\Eloquent\FoodRepositoryEloquent;
@@ -26,6 +27,7 @@ class FoodController extends Controller
     protected $typerepo;
     protected $commentrepo;
     protected $foodstorerepo;
+    protected $placerepo;
     /**
      * Create a new authentication controller instance.
      *
@@ -34,11 +36,12 @@ class FoodController extends Controller
      * @param TypeRepositoryEloquent       $type      the type repository
      * @param CommentRepositoryEloquent    $comment   the comment repository
      * @param UserRepositoryEloquent       $user      the user repository
-     * @param FoodsStoreRepositoryEloquent $foodstore the user repository
+     * @param FoodsStoreRepositoryEloquent $foodstore the foodstore repository
+     * @param PlaceRepositoryEloquent      $place     the place repository
      *
      * @return void
      */
-    public function __construct(FoodRepositoryEloquent $food, ImageRepositoryEloquent $image, TypeRepositoryEloquent $type, CommentRepositoryEloquent $comment, UserRepositoryEloquent $user, FoodsStoreRepositoryEloquent $foodstore)
+    public function __construct(FoodRepositoryEloquent $food, ImageRepositoryEloquent $image, TypeRepositoryEloquent $type, CommentRepositoryEloquent $comment, UserRepositoryEloquent $user, FoodsStoreRepositoryEloquent $foodstore, PlaceRepositoryEloquent $place)
     {
         $this->userrepo = $user;
         $this->foodrepo = $food;
@@ -46,6 +49,7 @@ class FoodController extends Controller
         $this->typerepo = $type;
         $this->commentrepo = $comment;
         $this->foodstorerepo = $foodstore;
+        $this->placerepo = $place;
     }
     /**
      * Display a listing of the resource.
@@ -65,27 +69,74 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        $types= $this->typerepo->lists('type', 'id');
+        $foodstores = $this->foodstorerepo->lists('name', 'id');
+        return view('backend.foods.create', compact('types', 'foodstores'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param \Illuminate\Http\FoodCreateRequest $request Food request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(FoodCreateRequest $request)
     {
-        //
+        // dd($request->all());
+        try {
+            $result_place = $this->placerepo->create(['place' => $request->place]);
+            $result = $this->foodrepo->create([
+                    'name_food' => $request->name_food,
+                    'introduce' => $request->introduce,
+                    'place_food_id' => $result_place['id'],
+                    'types_id' => $request->type,
+                    'users_id' => 1,
+                    'food_store_id' => $request->food_store,
+                    'comment_id' => 1
+                ]);
+            if ($result) {
+                if ($request->hasFile('image')) {
+                    $files = $request->file('image');
+                    foreach ($files as $file) {
+                        $img = time() . '_' .$request->name_food.'.'.$file->getClientOriginalExtension();
+                        $file-> move(config('path.avatar'), $img);
+                        $this->imagerepo->create([
+                                'image' => $img,
+                                'foods_id' => $result['id'],
+                            ]);
+                    }
+                }
+                Session::flash(trans('lang_admin_manager_user.success_cf'), trans('admin_manager_food.successful_message'));
+                return redirect()->route('admin.food.index');
+            } else {
+                Session::flash(trans('lang_admin_manager_user.success_cf'), trans('admin_manager_food.successful_message'));
+                return redirect()->route('admin.food.create');
+            }
+        } catch (Exception $ex) {
+            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('admin_manager_food.error_message'));
+            return redirect()->route('admin.food.create');
+        }
     }
 
     /**
      * Display the specified resource.
      *
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        //
+        try {
+            $foods = $this->foodrepo->find($id);
+            $images = $this->imagerepo->findByField('foods_id', $id);
+            // dd($images);
+            return  view('backend.foods.show', compact('foods', 'images'));
+        } catch (Exception $ex) {
+            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.no_id'));
+            return redirect()->route('admin.food.index');
+        }
     }
 
     /**
@@ -119,10 +170,10 @@ class FoodController extends Controller
         $data = $request->all();
         $list = $this->foodrepo->find($id);
         if (empty($list)) {
-            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.danger_edit'));
+            Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('admin_manager_food.danger_edit'));
         } else {
             $this->foodrepo->update($data, $id);
-            Session::flash(trans('lang_admin_manager_user.success_cf'), trans('lang_admin_manager_user.edit_success'));
+            Session::flash(trans('lang_admin_manager_user.success_cf'), trans('admin_manager_food.edit_success'));
         }
         return redirect() -> route('admin.food.index');
     }
@@ -146,15 +197,15 @@ class FoodController extends Controller
                 if ($result1) {
                     $result = $this->foodrepo->delete($id);
                     if ($result) {
-                        Session::flash(trans('lang_admin_manager_user.success_cf'), trans('lang_admin_manager_user.delete_success'));
+                        Session::flash(trans('lang_admin_manager_user.success_cf'), trans('admin_manager_food.delete_success'));
                     } else {
-                        Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.delete_fail'));
+                        Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('admin_manager_food.delete_fail'));
                     }
                 } else {
-                    Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.delete_fail'));
+                    Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('admin_manager_food.delete_fail'));
                 }
             } else {
-                Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.delete_fail'));
+                Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('admin_manager_food.delete_fail'));
             }
             return redirect() -> route('admin.food.index');
         } catch (ModelNotFoundException $ex) {

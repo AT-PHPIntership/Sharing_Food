@@ -23,6 +23,7 @@ $(document).ready(function(){
   $("div.alert").delay(timeout).slideUp();
 
 });
+// one picture
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -36,5 +37,36 @@ function readURL(input) {
 }
 $("#image").on('change', function(){
     readURL(this);
-
 });
+// many many picture
+var imageArray = [];
+        $(document).on('click','.remove-item',function(){   
+
+        $(this).closest('div').slideUp('slow', function(){$(this).remove();});
+        });
+        //event upload
+        function handleFileSelect(evt) {
+        var files = evt.target.files;
+
+        for (var i = 0, f; f = files[i]; i++) {
+        // Only process image files.
+        if (!f.type.match('image.*')) {
+        continue;
+        }
+        imageArray.push(f);
+        var reader = new FileReader();
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+        return function(e) {
+        // Render thumbnail.
+        var span = document.createElement('span');
+        span.innerHTML = ['<div class="col-md-3 thumb">'+'<img src="', e.target.result,
+        '" title="', escape(theFile.name), '"/>' +'<a class="btn btn-danger close remove-item">X</a>' +'</div>'].join('');
+        document.getElementById('listImage').insertBefore(span, null);
+        };
+        })(f);
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f);
+        }
+        }
+        document.getElementById('picture').addEventListener('change', handleFileSelect, false);
