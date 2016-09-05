@@ -83,13 +83,12 @@ class FoodController extends Controller
      */
     public function store(FoodCreateRequest $request)
     {
-        // dd($request->all());
         try {
             $resultPlace = $this->placerepo->create(['place' => $request->place]);
             $result = $this->foodrepo->create([
                     'name_food' => $request->name_food,
                     'introduce' => $request->introduce,
-                    'place_food_id' => $result_place['id'],
+                    'place_food_id' => $result_Place['id'],
                     'types_id' => $request->type,
                     'users_id' => 1,
                     'food_store_id' => $request->food_store,
