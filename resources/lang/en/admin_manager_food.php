@@ -26,4 +26,8 @@ return [
     'food_store' => 'Food Store',
     'comment_id' => 'Comment ID',
     'add_food' => 'Add Food',
+    'no_image' => 'No Image',
+    'image_food' => 'Food Image',
+    'edit_food' => 'Edit Food',
+    'update_food' => 'Update Food',
 ];

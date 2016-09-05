@@ -66,7 +66,7 @@ class UserController extends Controller
             $img = time() . '_' . $request->file('image')->getClientOriginalName();
             $request->file('image') -> move(config('path.avatar'), $img);
         }
-        $data['image'] = $img;
+        $data['avatar'] = $img;
         $data['password'] = bcrypt($request->password);
         $data['birthday'] = date(config('path.formatdate'), strtotime($request->birthday));
         $data['role_id'] = config('define.role_admin');
@@ -132,7 +132,7 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
             $img = $request->file('image');
             $imagename=time() . '_'.$data['name'] .'.'. $img->getClientOriginalExtension();
-            $data['image'] = $imagename;
+            $data['avatar'] = $imagename;
             $img->move(public_path(config('path.avatar')), $imagename);
         }
         $list = $this->userrepo->find($id);

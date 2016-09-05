@@ -65,4 +65,5 @@ return [
     'create_user' => 'Create User',
     'error_message' => 'Create admin not success',
     'successful_message' => 'Create admin successfully',
+    'add_user' => 'Add User',
 ];
