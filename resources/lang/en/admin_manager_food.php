@@ -40,4 +40,6 @@ return [
     'danger_edit' => 'Error edit food',
     'error_message' => 'Error create food',
     'successful_message' => 'Create food success',
+    'not_support_thumbnail' => 'Not support thumbnail',
+    'select_only_img' => 'Please help me choise image',
 ];

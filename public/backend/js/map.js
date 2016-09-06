@@ -1,16 +1,16 @@
 // created map for add food admin
 var map = new google.maps.Map(document.getElementById('map-canvas'),{
     center:{
-        lat:16.051365,
-        lng:108.207430
+        lat:latdefault,
+        lng:lngdefault
     },
-    zoom:10,
+    zoom:zoomdefault,
 }); 
 
 var marker= new google.maps.Marker({
     position:{
-        lat:16.051365,
-        lng:108.207430
+        lat:latdefault,
+        lng:lngdefault
     },
     map : map,
     draggable: true
@@ -26,5 +26,5 @@ google.maps.event.addListener(searchBox,'places_changed',function(){
         marker.setPosition(place.geometry.location)//thiết lập vị trí mới
     }
     map.fitBounds(bounds);
-    map.setZoom(10);
+    map.setZoom(zoomdefault);
 });

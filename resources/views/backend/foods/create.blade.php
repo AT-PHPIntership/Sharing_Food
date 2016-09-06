@@ -59,7 +59,11 @@
                 <div class="form-group{{ $errors->has('image[]') ? ' has-error' : '' }}">
                     {{ Form::label('image', trans('admin_manager_food.image_food')) }}
                     {{ Form::file('image[]',['class' => 'control','id' => 'picture', 'multiple' => 'true']) }}<br>
-                    <div id="listImage" class="col-md-12"></div>
+                    <div class="toggle-img">
+                      <i id="toggle-btn" class="fa fa-angle-double-up pull-right btn btn-xs btn-primary"></i>
+                  </div>
+                <div id="image-holder">
+        </div>
                 </div>
                 {{ Form::submit(trans('admin_manager_food.create_food'), array('class' => 'btn btn-primary')) }}
             {{ Form::close() }}
@@ -68,10 +72,15 @@
 </div>
          
 @section('script')
-    <script type="text/javascript" src="{{ url('backend/js/map.js') }}"> </script>
     <script type="text/javascript">
-        
-    </script>  
+        var latdefault = {!! json_encode(config('define.lat')) !!};
+        var lngdefault = {!! json_encode(config('define.lng')) !!};
+        var zoomdefault = {!! json_encode(config('define.zoom')) !!};
+        var not_support_thumbnail = {!! json_encode(trans('admin_manager_food.not_support_thumbnail')) !!};
+        var select_only_img = {!! json_encode(trans('admin_manager_food.select_only_img')) !!};
+    </script> 
+    <script type="text/javascript" src="{{ url('backend/js/map.js') }}"> </script> 
+    
 @endsection
 @endsection
 
