@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth','roleadmin']], function () {
     Route::group(['prefix'=>'admin', 'namespace' => 'Backend'], function () {
         Route::resource('user', 'UserController');
         Route::resource('food', 'FoodController');
+        Route::resource('foodstore', 'FoodStoreController');
     });
 });
 /* Link User can access */

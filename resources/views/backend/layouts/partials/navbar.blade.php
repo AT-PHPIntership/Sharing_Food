@@ -2,7 +2,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="{{ route('admin' )}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">{{ trans('lang_admin.f') }}<b></b>{{ trans('lang_admin.ood') }}</span>
       <!-- logo for regular state and mobile devices -->
@@ -167,7 +167,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-institution"></i> {{ trans('lang_admin.list_foods_store') }}</a></li>
+            <li><a href="{{ route('admin.foodstore.index') }}"><i class="fa fa-institution"></i> {{ trans('lang_admin.list_foods_store') }}</a></li>
           </ul>
         </li>
         <li class="treeview">

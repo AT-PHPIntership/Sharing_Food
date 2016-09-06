@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $('#list_users').DataTable();
-	$('#list_foods').DataTable();
+  $('#list_foods').DataTable();
+	$('#list_food_store').DataTable();
     //Confirm delete
   $('#confirmDelete').on('show.bs.modal', function (e) {
       // set message
