@@ -40,34 +40,50 @@ $("#image").on('change', function(){
     readURL(this);
 });
 // many many picture
-var imageArray = [];
-        $(document).on('click','.remove-item',function(){   
+const EXTNS = ["jpg", "jpeg", "png", "gif"];
 
-        $(this).closest('div').slideUp('slow', function(){$(this).remove();});
-        });
-        //event upload
-        function handleFileSelect(evt) {
-        var files = evt.target.files;
+$(document).ready(function() {
+    var toggle_img = $('.toggle-img');
+    var image_holder = $("#image-holder");
+    var toggle_btn = $('#toggle-btn');
+    $("#picture").on('change', function() {
+        //Get count of selected files
+        var countFiles = $(this)[0].files.length;
 
-        for (var i = 0, f; f = files[i]; i++) {
-        // Only process image files.
-        if (!f.type.match('image.*')) {
-        continue;
+        var imgPath = $(this)[0].value;
+        var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+        image_holder.empty();
+
+        if (extn == EXTNS[0] || extn == EXTNS[1] || extn == EXTNS[2] || extn == EXTNS[3]) {
+            if (typeof(FileReader) != "undefined") {
+                //loop for each file selected for uploaded.
+                for (var i = 0; i < countFiles; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $("<img />", {
+                            "src": e.target.result,
+                            "class": "thumb-image",
+                            "style": "width:136px; padding: 10px 10px 0px 0px;",
+                        }).appendTo(image_holder);
+                    }
+
+                    image_holder.show();
+                    reader.readAsDataURL($(this)[0].files[i]);
+                    // show the toggle button.
+                    toggle_img.show();
+                }
+            } else {
+                alert(not_support_thumbnail);
+                toggle_img.hide();
+            }
+        } else {
+            alert(select_only_img);
+            toggle_img.hide();
         }
-        imageArray.push(f);
-        var reader = new FileReader();
-        // Closure to capture the file information.
-        reader.onload = (function(theFile) {
-        return function(e) {
-        // Render thumbnail.
-        var span = document.createElement('span');
-        span.innerHTML = ['<div class="col-md-3 thumb">'+'<img src="', e.target.result,
-        '" title="', escape(theFile.name), '"/>' +'<a class="btn btn-danger close remove-item">X</a>' +'</div>'].join('');
-        document.getElementById('listImage').insertBefore(span, null);
-        };
-        })(f);
-        // Read in the image file as a data URL.
-        reader.readAsDataURL(f);
-        }
-        }
-        document.getElementById('picture').addEventListener('change', handleFileSelect, false);
+    });
+    // toggle button
+    toggle_img.click(function(){
+        image_holder.toggle();
+        $("i",this).toggleClass("fa-angle-double-down fa-angle-double-up");
+    });
+});
