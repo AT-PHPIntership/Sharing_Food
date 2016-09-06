@@ -3,7 +3,7 @@
 @section('title', trans('admin_manager_food.title_manage_food'))
 @section('content')
 <div class="row">
-	<h2 class="text-left">&nbsp;{{trans('lang_admin_manager_user.user_list')}}</h2><br>
+	<h2 class="text-left">&nbsp;{{trans('admin_manager_food.food_list')}}</h2><br>
     <div class="box box-success">
     <div class="col-md-12" align="center"><a href="{{ route('admin.food.create') }}" class="btn btn-primary" >{!! trans('admin_manager_food.add_food') !!}</a></div>
     <div class="col-md-12">
@@ -29,7 +29,7 @@
                         @foreach($foods as $item)
                         <tr>
                             <td>{!! $index++ !!}</td>
-                            <td>{{ $item->name_food }}</td>
+                            <td><a href="{{ route('admin.food.show',$item ->id) }}">{{ $item->name_food }}</a></td>
                             <td>{{ $item->introduce }}</td>
                             <td>{{ $item->accept }}</td>
                             <td>{{ $item->places->place }}</td>
