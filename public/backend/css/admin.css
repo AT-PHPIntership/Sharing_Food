@@ -6,3 +6,7 @@
 .heightmap{
 	height: 500px;
 }
+#titlefont{
+	font-size: 40px;
+	color: #e67e22;
+}

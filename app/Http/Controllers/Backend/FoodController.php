@@ -207,7 +207,7 @@ class FoodController extends Controller
                 Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('admin_manager_food.delete_fail'));
             }
             return redirect() -> route('admin.food.index');
-        } catch (ModelNotFoundException $ex) {
+        } catch (Exception $ex) {
             Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.no_id'));
             return redirect() -> route('admin.food.index');
         }
