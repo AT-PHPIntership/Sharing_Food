@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth','roleadmin']], function () {
         Route::resource('user', 'UserController');
         Route::resource('food', 'FoodController');
         Route::resource('foodstore', 'FoodStoreController');
+        Route::resource('type', 'TypeController');
     });
 });
 /* Link User can access */
