@@ -21,11 +21,15 @@
                       </div>
                     </form>
                 </div>
-                <li>
-                  <img src="{{ url(config('path.avatar').Auth::user()->avatar)}}" class="img-circle" alt="User Image" width="30px" height="30px">
-                </li>
-                <li><a href="#">{{Auth::user()->username}}</a></li> 
-                <li><a href="{{ route('logout') }}">{{ trans('lang_admin.sign_out') }}</a></li> 
+                @if(Auth::check())
+                  <li>
+                    <img src="{{ url(config('path.avatar').Auth::user()->avatar)}}" title="{{Auth::user()->username}}" class="img-circle " width="30px;" height="30px;">
+                  </li>
+                  <li><a href="#">{{Auth::user()->username}}</a></li> 
+                  <li><a href="{{ route('logout') }}">{{ trans('lang_admin.sign_out') }}</a></li> 
+                @else
+                  <li><a href="{{ route('login') }}">{{ trans('lang_user.login') }}</a></li>
+                @endif 
   					</ul> 
 				</div>
 				<div class="clearfix"> </div>

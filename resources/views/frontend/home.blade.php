@@ -11,7 +11,7 @@
 <div class="typrography">
 	<div class="container">     
       {{-- contend --}}
-	</div>
+      @yield('content')
 </div>
 <!--typo end here-->
 @include('frontend.layouts.partials.footer')

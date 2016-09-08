@@ -1,4 +1,4 @@
-<title>{{ trans('lang_user.title_user') }}</title>
+<title>{{ trans('lang_user.title_user') }}@yield('title')</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -9,3 +9,4 @@
 <link href="{{ url('frontend/css/style.css') }}" rel="stylesheet" type="text/css" media="all"/>
 <link href="{{ url('frontend/css/animate.css') }}" rel="stylesheet" type="text/css" media="all">
 <link href="{{ url('frontend/css/search.css') }}" rel="stylesheet" type="text/css" media="all">
+@yield('header')

@@ -24,5 +24,11 @@ return [
     'contact' => 'Contact',
     'search' => 'Search Food, place and ...',
     'about' => 'About Us',
-    'get_type' => 'Get Type'
+    'get_type' => 'Get Type',
+    'login' => 'Login',
+    'foods' => [
+        'create_food' => 'Create Food',
+        'all_food' => 'All Food',
+        'error_image' => 'Error load image'
+    ],
 ];

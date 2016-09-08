@@ -27,7 +27,7 @@ class Food extends Model implements Transformable
      */
     public function images()
     {
-        return $this->hasMany('App\Models\Image');
+        return $this->hasMany('App\Models\Image', 'foods_id', 'id');
     }
     /**
      * Get id from Comment.
