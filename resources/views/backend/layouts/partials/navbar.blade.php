@@ -178,7 +178,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-sliders"></i> {{ trans('lang_admin.list_types') }}</a></li>
+            <li><a href="{{ route('admin.type.index') }}"><i class="fa fa-sliders"></i> {{ trans('lang_admin.list_types') }}</a></li>
           </ul>
         </li>
       </ul>

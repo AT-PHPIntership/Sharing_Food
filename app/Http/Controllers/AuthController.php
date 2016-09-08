@@ -19,9 +19,9 @@ class AuthController extends Controller
     /**
      * Create a new authentication controller instance.
      *
-     * @param UserRepositoryEloquent $user the user repository
-     * @param FoodRepositoryEloquent       $food      the food repository
-     * @param ImageRepositoryEloquent      $image     the image repository
+     * @param UserRepositoryEloquent  $user  the user repository
+     * @param FoodRepositoryEloquent  $food  the food repository
+     * @param ImageRepositoryEloquent $image the image repository
      *
      * @return void
      */
@@ -76,11 +76,11 @@ class AuthController extends Controller
     {
         $foods = $this->foodrepo->with('images')->simplePaginate(6);
         foreach ($foods as $key => $value) {
-           $foodList[]=$value;
-           $image=$value['images']->first();
-           $foodList[$key]['image']=$image['image'];
+            $foodList[]=$value;
+            $image=$value['images']->first();
+            $foodList[$key]['image']=$image['image'];
         }
-        return view('frontend.foods.index',compact('foodList','foods'));
+        return view('frontend.foods.index', compact('foodList', 'foods'));
     }
 
     /**
