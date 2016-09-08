@@ -12,6 +12,7 @@
 	<div class="container">     
       {{-- contend --}}
       @yield('content')
+    </div>
 </div>
 <!--typo end here-->
 @include('frontend.layouts.partials.footer')

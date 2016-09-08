@@ -74,12 +74,15 @@ class AuthController extends Controller
      */
     public function getHome()
     {
-        $foods = $this->foodrepo->with('images')->simplePaginate(6);
+        $foods = $this->foodrepo->with('images')->simplePaginate(10);
         foreach ($foods as $key => $value) {
-            $foodList[]=$value;
-            $image=$value['images']->first();
-            $foodList[$key]['image']=$image['image'];
+            if ($value['accept'] != 0) {
+                $foodList[]=$value;
+                $image=$value['images']->first();
+                $foodList[$key]['image']=$image['image'];
+            }
         }
+        // dd($foodList);
         return view('frontend.foods.index', compact('foodList', 'foods'));
     }
 
