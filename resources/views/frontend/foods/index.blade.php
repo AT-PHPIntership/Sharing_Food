@@ -12,7 +12,7 @@
 					@foreach($foodList as $item)
 					<div class="col-md-4 menu-items">
 						@if($item->image)
-						<a href="#"><img src="{{ url(config('path.foods').$item->image)}}" alt="{{ trans('lang_user.foods.error_image') }}" class="img-responsive" width="284" height="177"></a>
+						<a href="#"><img src="{{ url(config('path.foods').$item->image)}}" alt="{{ trans('lang_user.foods.error_image') }}" class="img-responsive sizefood" ></a>
 						@else
 						<a href="#"><img src="{{ url(config('path.foods').'food_default.png')}}" alt="" class="img-responsive"></a>
 						@endif

@@ -23,7 +23,7 @@
                 </div>
                 @if(Auth::check())
                   <li>
-                    <img src="{{ url(config('path.avatar').Auth::user()->avatar)}}" title="{{Auth::user()->username}}" class="img-circle " width="30px;" height="30px;">
+                    <img src="{{ url(config('path.avatar').Auth::user()->avatar)}}" title="{{Auth::user()->username}}" class="img-circle sizeimage">
                   </li>
                   <li><a href="#">{{Auth::user()->username}}</a></li> 
                   <li><a href="{{ route('logout') }}">{{ trans('lang_admin.sign_out') }}</a></li> 
