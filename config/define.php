@@ -12,5 +12,6 @@ return [
 	'zoom' => 10,
 	'paginate' => 10,
 	'error401' => 401,
-	'unauthorized' => 'Unauthorized.'
+	'unauthorized' => 'Unauthorized.',
+	'slider' => 2500,
 ];

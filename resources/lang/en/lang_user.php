@@ -29,6 +29,12 @@ return [
     'foods' => [
         'create_food' => 'Create Food',
         'all_food' => 'All Food',
-        'error_image' => 'Error load image'
+        'error_image' => 'Error load image',
+        'close' => 'Close',
+        'posted_by' => 'Posted by',
+        'in_general' => 'in general',
+        'comments' => 'Comments',
+        'comment' => 'Comment',
+        'message' => 'Message',
     ],
 ];
