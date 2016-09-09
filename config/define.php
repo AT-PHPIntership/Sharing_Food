@@ -10,4 +10,6 @@ return [
 	'lat' => 16.051365,
 	'lng' => 108.207430,
 	'zoom' => 10,
+	'error401' => 401,
+	'unauthorized' => 'Unauthorized.'
 ];
