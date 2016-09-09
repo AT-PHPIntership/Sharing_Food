@@ -48,3 +48,12 @@
   left: initial;
   font-size: 14px;
 }
+.sizeimage {
+  width: 30px;
+  height: 30px;
+}
+
+.sizefood {
+  width: 284px;
+  height: 177px;
+}

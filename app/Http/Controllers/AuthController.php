@@ -7,22 +7,30 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Auth;
 use App\Repositories\Eloquent\UserRepositoryEloquent;
+use App\Repositories\Eloquent\FoodRepositoryEloquent;
+use App\Repositories\Eloquent\ImageRepositoryEloquent;
 
 class AuthController extends Controller
 {
     protected $repository;
+    protected $foodrepo;
+    protected $imagerepo;
 
     /**
      * Create a new authentication controller instance.
      *
-     * @param UserRepositoryEloquent $user the user repository
+     * @param UserRepositoryEloquent  $user  the user repository
+     * @param FoodRepositoryEloquent  $food  the food repository
+     * @param ImageRepositoryEloquent $image the image repository
      *
      * @return void
      */
-    public function __construct(UserRepositoryEloquent $user)
+    public function __construct(UserRepositoryEloquent $user, FoodRepositoryEloquent $food, ImageRepositoryEloquent $image)
     {
         // $this->middleware('guest');
         $this->repository = $user;
+        $this->foodrepo = $food;
+        $this->imagerepo = $image;
     }
 
     /**
@@ -66,7 +74,16 @@ class AuthController extends Controller
      */
     public function getHome()
     {
-        return view('frontend.home');
+        $foods = $this->foodrepo->with('images')->simplePaginate(config('define.paginate'));
+        foreach ($foods as $key => $value) {
+            if ($value['accept'] != 0) {
+                $foodList[]=$value;
+                $image=$value['images']->first();
+                $foodList[$key]['image']=$image['image'];
+            }
+        }
+        // dd($foodList);
+        return view('frontend.foods.index', compact('foodList', 'foods'));
     }
 
     /**
