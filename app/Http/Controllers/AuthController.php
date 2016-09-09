@@ -74,7 +74,7 @@ class AuthController extends Controller
      */
     public function getHome()
     {
-        $foods = $this->foodrepo->with('images')->simplePaginate(config('define.zoom'));
+        $foods = $this->foodrepo->with('images')->simplePaginate(config('define.paginate'));
         foreach ($foods as $key => $value) {
             if ($value['accept'] != 0) {
                 $foodList[]=$value;
