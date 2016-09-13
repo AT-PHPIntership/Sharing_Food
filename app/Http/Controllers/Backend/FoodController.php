@@ -91,8 +91,7 @@ class FoodController extends Controller
                     'place_food_id' => $resultPlace['id'],
                     'types_id' => $request->type,
                     'users_id' => 1,
-                    'food_store_id' => $request->food_store,
-                    'comment_id' => 1
+                    'food_store_id' => $request->food_store
                 ]);
             if ($result) {
                 if ($request->hasFile('image')) {
@@ -190,10 +189,11 @@ class FoodController extends Controller
             $count = $this->foodrepo->find($id);
             if (!empty($count)) {
                 $imageItem=$this->imagerepo->findByField('foods_id', $id, ['id']);
-                for ($i=0; $i<count($imageItem); $i++) {
-                    $result1=$this->imagerepo->delete($imageItem[$i]['id']);
-                }
-                if ($result1) {
+                // for ($i=0; $i<count($imageItem); $i++) {
+                //     $result1=$this->imagerepo->delete($imageItem[$i]['id']);
+                // }
+                $commentItem=$this->commentrepo->findByField('foods_id', $id, ['id']);
+                if (count($imageItem) == config('define.result_food') && count($commentItem) == config('define.result_food')) {
                     $result = $this->foodrepo->delete($id);
                     if ($result) {
                         Session::flash(trans('lang_admin_manager_user.success_cf'), trans('admin_manager_food.delete_success'));

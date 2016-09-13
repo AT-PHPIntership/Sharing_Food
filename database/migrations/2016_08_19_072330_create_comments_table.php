@@ -19,6 +19,8 @@ class CreateCommentsTable extends Migration
             $table->foreign('users_id')->references('id')->on('users');
             $table->integer('ratings_id')->unsigned();
             $table->foreign('ratings_id')->references('id')->on('ratings');
+            $table->integer('foods_id')->unsigned();
+            $table->foreign('foods_id')->references('id')->on('foods');
             $table->timestamps();
         });
     }
