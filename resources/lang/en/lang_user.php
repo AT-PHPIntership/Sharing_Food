@@ -37,4 +37,11 @@ return [
         'comment' => 'Comment',
         'message' => 'Message',
     ],
+    'comments' => [
+        'success_comment' => 'You have comment for food',
+        'error_comment' => 'Error, not send comment content',
+        'required' => 'The body is required.',
+        'min' => 'The body must be at least 10 characters.',
+        'max' => 'The body must be at 1000 characters.',
+    ],
 ];

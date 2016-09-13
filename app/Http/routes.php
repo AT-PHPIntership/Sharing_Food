@@ -34,4 +34,5 @@ Route::group(['middleware' => ['auth','roleadmin']], function () {
 /* Link User can access */
 Route::group(['middleware' => 'auth', 'namespace' => 'Frontend'], function () {
     Route::resource('food', 'FoodController');
+    Route::resource('comment', 'CommentController');
 });
