@@ -18,6 +18,7 @@ class CommentTableSeeder extends Seeder
         		'body'     => $faker-> text,
         		'users_id'   	  => rand(1,10),
         		'ratings_id'	  => rand(1,5),
+                'foods_id'         => rand(1,10),
         		'created_at'      => $faker-> dateTime
         	]);
         }    }

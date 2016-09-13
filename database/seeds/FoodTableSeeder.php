@@ -22,7 +22,6 @@ class FoodTableSeeder extends Seeder
         		'types_id'        => rand(1,10),
         		'users_id'		  => rand(1,10),
         		'food_store_id'   => rand(1,10),
-                'comment_id'      => rand(1,10),
         		'created_at'      => $faker-> dateTime
         	]);
         }

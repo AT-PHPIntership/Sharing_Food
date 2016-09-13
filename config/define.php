@@ -14,4 +14,5 @@ return [
 	'error401' => 401,
 	'unauthorized' => 'Unauthorized.',
 	'slider' => 2500,
+	'result_food' => 0,
 ];
