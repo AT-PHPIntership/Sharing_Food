@@ -1,7 +1,15 @@
 @extends('frontend.home')
 @section('content')
 @section('header')
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bower/bootstrap-star-rating/css/star-rating.css') }}">		
+	<link rel="stylesheet" type="text/css" href="{{ asset('bower/bootstrap-star-rating/css/theme-krajee-fa.css') }}">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+	<script type="text/javascript" src="{{ asset('bower/bootstrap-star-rating/js/star-rating.js') }}" ></script>		
+{{-- <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"> --}}
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/slide.css') }}">
+	
+	
 @endsection
 <div class="single">
 	<div class="blog-to">		
@@ -25,38 +33,47 @@
 	<div class="blog-top">
 			<div class="top-blog ">
 				<h1>{{ $foods->name_food }}</h1>
-				<p class="sed1">{{ trans('lang_user.foods.posted_by') }}<a href="#"> {{ $foods->usersid->username }}</a> {{ trans('lang_user.foods.in_general') }}| <a href="#">{{ count($foods->comment_id) }} {{ trans('lang_user.foods.comments') }}</a></p> 
+				<p class="sed1">{{ trans('lang_user.foods.posted_by') }}<a href="#"> {{ $foods->usersid->username }}</a> {{ trans('lang_user.foods.in_general') }}| <a href="#">{{ count($comments) }} {{ trans('lang_user.foods.comments') }}</a></p> 
 				<p class="sed2">{{ $foods->introduce }}</p>
 		       <div class="clearfix"> </div>
 			 </div>
 	</div>
 </div>
 <div class="single-middle">
-	<h1>{{ count($foods->comment_id) }} {{ trans('lang_user.foods.comments') }}</h1>
+	<h1>{{ count($comments) }} {{ trans('lang_user.foods.comments') }}</h1>
+		@foreach($comments as $itemcomment)
 		<div class="media">
 		  <div class="media-left">
 			<a href="#">
-				<img class="media-object sizeimage" src="" alt="">
+				<img class="media-object sizeimage" src="{{ url(config('path.avatar').$itemcomment->usercomment->avatar) }}" alt="">
 			</a>
 		  </div>
 		  <div class="media-body">
-			<h4 class="media-heading"><a href="#"></a></h4>
-				<p>{{-- Content comment --}}</p>
+			<h4 class="media-heading"><a href="#">{{ $itemcomment->usercomment->username }}</a></h4>
+				<p>{{ $itemcomment->body }}</p>
 		  </div>
 		</div>
+		@endforeach
 </div>
 <div class="single-bottom">
 	<h2>{{ trans('lang_user.foods.comment') }}</h2>
-		<form action="" >
-			<input type="hidden" name="user_id" value="{{Auth::user() ? Auth::user()->id : ''}}">
-			<textarea cols="77" rows="6" value=" " name="comment" id="comment" onfocus="this.value='';" onblur="if (this.value == '') {this.value = {{ trans('lang_user.foods.message') }};}">{{ trans('lang_user.foods.message') }}</textarea>
+		<form method="POST">
+			<input type="hidden" name="_token" value="{{ Session::token() }}" />
+			<input type="hidden" name="users_id" value="{{Auth::user() ? Auth::user()->id : ''}}">
+			<input type="hidden" name="foods_id" value="{{$foods->id}}">
+			<textarea cols="77" rows="6" value=" " name="comment" id="comment-text" onfocus="this.value='';" onblur="if (this.value == '') {this.value = {{ trans('lang_user.foods.message') }};}">{{ trans('lang_user.foods.message') }}</textarea>
+			<input id="input-id" type="text" class="rating" data-size="lg" name="rating_id">
+			<div class='clearfix'></div>
 			<input type="submit" value="Send" name="sendcmt" id="sendcmt">
 		</form>
 	</div>
 </div>
+<script type="text/javascript" src="{{ asset('frontend/js/comment.js') }}" ></script>
 <script type="text/javascript">
+	//comment
 	var slider = {!! json_encode(config('define.slider')) !!};
+	var comment_path = {!! json_encode(config('path.comment')) !!};
 </script>
 <script type="text/javascript" src="{{ asset('frontend/js/slide.js') }}" ></script>
-<script type="text/javascript" src="{{ asset('frontend/js/comment.js') }}" ></script>
+
 @endsection

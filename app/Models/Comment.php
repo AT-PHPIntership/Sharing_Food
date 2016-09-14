@@ -18,14 +18,14 @@ class Comment extends Model implements Transformable
     protected $table= 'comments';
 
     protected $fillable = [
-        'body', 'users_id', 'ratings_id',
+        'body', 'users_id', 'ratings_id','foods_id',
     ];
     /**
      * Get id from Rating.
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
-    public function rating()
+    public function ratings()
     {
         return $this->hasOne('App\Models\Rating', 'ratings_id');
     }
@@ -45,6 +45,6 @@ class Comment extends Model implements Transformable
      */
     public function foodcomment()
     {
-        return $this->belongsTo('App\Models\Food');
+        return $this->belongsTo('App\Models\Food', 'foods_id');
     }
 }

@@ -15,4 +15,6 @@ return [
 	'unauthorized' => 'Unauthorized.',
 	'slider' => 2500,
 	'result_food' => 0,
+	'HTTP_CREATED_STATUS'       => 201,
+    'HTTP_BAD_REQUEST_STATUS'   => 400,
 ];

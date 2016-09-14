@@ -18,7 +18,7 @@ class Food extends Model implements Transformable
     protected $table= 'foods';
 
     protected $fillable = [
-        'name_food', 'introduce', 'accept', 'place_food_id', 'types_id', 'users_id', 'food_store_id', 'comment_id',
+        'name_food', 'introduce', 'accept', 'place_food_id', 'types_id', 'users_id', 'food_store_id',
     ];
     /**
      * Get name from role.
@@ -36,7 +36,7 @@ class Food extends Model implements Transformable
      */
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment', 'comments_id');
+        return $this->hasMany('App\Models\Comment', 'comments_id', 'id');
     }
     /**
      * Get id from type.

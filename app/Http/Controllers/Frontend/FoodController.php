@@ -91,7 +91,8 @@ class FoodController extends Controller
         try {
             $foods = $this->foodrepo->find($id);
             $images = $this->imagerepo->all();
-            return  view('frontend.foods.show', compact('foods', 'images'));
+            $comments = $this->commentrepo->findByField('foods_id', $id)->all();
+            return  view('frontend.foods.show', compact('foods', 'images', 'comments'));
         } catch (Exception $ex) {
             Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.no_id'));
             return redirect()->route('home');
