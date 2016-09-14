@@ -42,15 +42,26 @@
 <div class="single-middle">
 	<h1>{{ count($comments) }} {{ trans('lang_user.foods.comments') }}</h1>
 		@foreach($comments as $itemcomment)
-		<div class="media">
+		<div class="media" id="{{ $itemcomment->id}}">
 		  <div class="media-left">
 			<a href="#">
 				<img class="media-object sizeimage" src="{{ url(config('path.avatar').$itemcomment->usercomment->avatar) }}" alt="">
 			</a>
 		  </div>
 		  <div class="media-body">
-			<h4 class="media-heading"><a href="#">{{ $itemcomment->usercomment->username }}</a></h4>
-				<p>{{ $itemcomment->body }}</p>
+			<h4 class="media-heading"><a href="#">{{ $itemcomment->usercomment->username }}</a><small class="pull-right">
+				@if($itemcomment->usercomment->id == Auth::user()->id)
+				<form class="del-cmt-form" method="POST">
+					<input type="hidden" name="_token" value="{{ Session::token() }}" />
+	                <button type="submit" class="btn btn-danger btn-sm" id="deletecmt">{{ trans('lang_user.comments.delete') }}</button>
+	                <input type="hidden" name="comment_id" value="{{$itemcomment->id}}">
+	            </form>
+	            @endif
+			</small></h4>
+				<p>{{ $itemcomment->body }}
+					@if($itemcomment->usercomment->id == Auth::user()->id)
+		            @endif
+				</p>
 		  </div>
 		</div>
 		@endforeach

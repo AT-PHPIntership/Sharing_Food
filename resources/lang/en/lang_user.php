@@ -43,5 +43,7 @@ return [
         'required' => 'The body is required.',
         'min' => 'The body must be at least 10 characters.',
         'max' => 'The body must be at 1000 characters.',
+        'delete' => 'X',
+        'delete_fail' => 'Error delete comment',
     ],
 ];

@@ -6,7 +6,6 @@ $(document).on('click','#sendcmt',function(e){
     var foods_id = $("[name='foods_id']").val();
     var rating_id = $("[name='rating_id']").val();
     const CREATED = 200;
-    console.log(token);
 
     e.preventDefault(e);
 
@@ -27,6 +26,36 @@ $(document).on('click','#sendcmt',function(e){
         dataType: 'json',
         success: function(data){
             alert(data);           
+        },
+        error: function(data){
+            var errors = JSON.parse(data.responseText).content;
+            alert(errors);
+        }
+    });
+});
+$(document).on('click','#deletecmt',function(evt){
+    evt.preventDefault(evt);
+    var token = $("[name='_token']").val();
+    var comment_id = $("[name='comment_id']").val();
+    const CREATED = 200;
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: comment_path,
+        data: {
+            _method: 'DELETE',
+            commentId: comment_id,
+        },
+        dataType: 'json',
+        success: function(data){
+            $('#'+data.commentID).remove();
+            alert(data.commentID);
+            descreaseCmt(data.commentID);           
         },
         error: function(data){
             var errors = JSON.parse(data.responseText).content;
