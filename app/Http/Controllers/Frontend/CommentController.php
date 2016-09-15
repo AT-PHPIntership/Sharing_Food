@@ -9,23 +9,27 @@ use App\Http\Requests\Frontend\CommentRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\CommentRepositoryEloquent;
 use App\Repositories\Eloquent\RatingRepositoryEloquent;
+use App\Repositories\Eloquent\UserRepositoryEloquent;
 
 class CommentController extends Controller
 {
     protected $commentrepo;
     protected $ratingrepo;
+    protected $userrepo;
     /**
      * Create a new authentication controller instance.
      *
      * @param CommentRepositoryEloquent $comment the comment repository
-     * @param RatingRepositoryEloquent  $rating  the comment repository
+     * @param RatingRepositoryEloquent  $rating  the rating repository
+     * @param UserRepositoryEloquent    $user    the user repository
      *
      * @return void
      */
-    public function __construct(CommentRepositoryEloquent $comment, RatingRepositoryEloquent $rating)
+    public function __construct(CommentRepositoryEloquent $comment, RatingRepositoryEloquent $rating, UserRepositoryEloquent $user)
     {
         $this->commentrepo = $comment;
         $this->ratingrepo = $rating;
+        $this->userrepo =$user;
     }
     /**
      * Display a listing of the resource.
@@ -66,8 +70,9 @@ class CommentController extends Controller
                     'ratings_id' => $rating['id'],
                     'foods_id' => $request->foods_id
                 ]);
-            return $comment ? response()->json(['mes' => trans('lang_user.comments.success_comment')], config('define.HTTP_CREATED_STATUS'))
-                            : response()->json(['responseText' => trans('lang_user.comments.error_comment')], config('define.HTTP_BAD_REQUEST_STATUS'));
+            $user=$this->userrepo->findByField('id', $comment['users_id'], ['username']);
+            $comment['name']=$user[config('define.result_cmt')]['username'];
+            return $comment ? response()->json($comment): response()->json(['responseText' => trans('lang_user.comments.error_comment')], config('define.HTTP_BAD_REQUEST_STATUS'));
         }
     }
 
@@ -104,10 +109,16 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param \Illuminate\Http\Request $request the request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $deleting = $this->commentrepo->delete($request->commentId);
+            return $deleting ? response()->json(['commentID' => $request->commentId], config('define.HTTP_CREATED_STATUS'))
+                             : response()->json(['responseText' => trans('lang_user.comments.delete_fail')], config('define.HTTP_BAD_REQUEST_STATUS'));
+        }
     }
 }
