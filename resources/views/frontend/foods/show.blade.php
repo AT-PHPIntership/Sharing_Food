@@ -41,6 +41,23 @@
 </div>
 <div class="single-middle">
 	<h1>{{ count($comments) }} {{ trans('lang_user.foods.comments') }}</h1>
+		<div class="media" id="comment" style="display: none;">
+		  <div class="media-left">
+			<a href="#">
+				<img class="media-object sizeimage" src="{{ url(config('path.avatar').Auth::user()->avatar) }}" alt="">
+			</a>
+		  </div>
+		  <div class="media-body">
+			<h4 class="media-heading"><a href="#"></a><small class="pull-right">
+				<form class="del-cmt-form" method="POST">
+					<input type="hidden" name="_token" value="{{ Session::token() }}" />
+	                <button type="submit" class="btn btn-danger btn-sm" id="deletecmt">{{ trans('lang_user.comments.delete') }}</button>
+	                <input type="hidden" name="comment_id" value="" >
+	            </form>
+			</small></h4>
+				<p></p>
+		  </div>
+		</div>
 		@foreach($comments as $itemcomment)
 		<div class="media" id="{{ $itemcomment->id}}">
 		  <div class="media-left">
@@ -59,12 +76,11 @@
 	            @endif
 			</small></h4>
 				<p>{{ $itemcomment->body }}
-					@if($itemcomment->usercomment->id == Auth::user()->id)
-		            @endif
 				</p>
 		  </div>
 		</div>
 		@endforeach
+		<div id="comment1"></div>
 </div>
 <div class="single-bottom">
 	<h2>{{ trans('lang_user.foods.comment') }}</h2>
@@ -73,7 +89,7 @@
 			<input type="hidden" name="users_id" value="{{Auth::user() ? Auth::user()->id : ''}}">
 			<input type="hidden" name="foods_id" value="{{$foods->id}}">
 			<textarea cols="77" rows="6" value=" " name="comment" id="comment-text" onfocus="this.value='';" onblur="if (this.value == '') {this.value = {{ trans('lang_user.foods.message') }};}">{{ trans('lang_user.foods.message') }}</textarea>
-			<input id="input-id" type="text" class="rating" data-size="lg" name="rating_id">
+			<input id="input-id" type="text" class="rating" data-size="sm" name="rating_id">
 			<div class='clearfix'></div>
 			<input type="submit" value="Send" name="sendcmt" id="sendcmt">
 		</form>
