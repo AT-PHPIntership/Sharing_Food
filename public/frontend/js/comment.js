@@ -5,7 +5,6 @@ $(document).on('click','#sendcmt',function(e){
     var user_id = $("[name='users_id']").val();
     var foods_id = $("[name='foods_id']").val();
     var rating_id = $("[name='rating_id']").val();
-    const CREATED = 200;
 
     e.preventDefault(e);
 
@@ -37,7 +36,6 @@ $(document).on('click','#deletecmt',function(evt){
     evt.preventDefault(evt);
     var token = $("[name='_token']").val();
     var comment_id = $("[name='comment_id']").val();
-    const CREATED = 200;
 
     $.ajaxSetup({
         headers: {
