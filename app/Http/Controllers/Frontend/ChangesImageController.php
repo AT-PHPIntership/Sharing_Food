@@ -30,7 +30,7 @@ class ChangesImageController extends Controller
      *
      * @return Illuminate\Http\Response
      */
-    public function postUpload(Request $request)
+    public function upload(Request $request)
     {
         $data= $request->all();
         $folderPath = config('path.avatar');
@@ -38,7 +38,7 @@ class ChangesImageController extends Controller
         $filename = '';
         if (null != $file) {
             $filename = time() . '_'.$file->getClientOriginalName().'.'. $file->getClientOriginalExtension();
-            $upload_success = $file->move($folderPath, $filename);
+            $upload = $file->move($folderPath, $filename);
             $data['avatar'] = $filename;
         }
         $list = $this->userrepo->find(Auth::user()->id);
