@@ -3,3 +3,4 @@
 <script type="text/javascript" src="{{ url('frontend/js/easing.js') }}"></script>
 <script type="text/javascript" src="{{ url('frontend/js/home.js') }}"></script>
 <script src="{{ url('frontend/js/wow.min.js') }}"></script>
+@yield('script')

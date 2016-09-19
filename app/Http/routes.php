@@ -36,4 +36,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Frontend'], function () {
     Route::resource('food', 'FoodController');
     Route::resource('comment', 'CommentController', ['except' => ['destroy']]);
     Route::delete('/comment/{id?}', ['uses' => 'CommentController@destroy', 'as' => 'comment.destroy']);
+    Route::resource('profile', 'ProfileController');
+    Route::post('profile/upload/', ['as' => 'profile.upload', 'uses' => 'ChangesImageController@upload']);
 });

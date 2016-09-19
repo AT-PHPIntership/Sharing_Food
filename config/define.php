@@ -18,4 +18,6 @@ return [
 	'HTTP_CREATED_STATUS'       => 201,
     'HTTP_BAD_REQUEST_STATUS'   => 400,
     'result_cmt' => 0,
+    'profile_time' => 400,
+    'success' => 200,
 ];
