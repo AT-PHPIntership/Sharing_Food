@@ -8,7 +8,7 @@
                   <li><a href="{{ route('home') }}">{{ trans('lang_user.homepage') }}</a></li>
                   <li><a href="#">{{ trans('lang_user.place') }}</a></li>
                   <li><a href="#">{{ trans('lang_user.food_store') }}</a></li>
-                  <li><a class="active" href="#">{{ trans('lang_user.food') }}</a></li>
+                  <li><a class="active" href="{{ route('home') }}">{{ trans('lang_user.food') }}</a></li>
                   <li><a href="#">{{ trans('lang_user.type') }}</a></li>
                   <li><a href="#">{{ trans('lang_user.contact') }}</a></li>
                 </div>               
@@ -25,7 +25,7 @@
                   <li>
                     <img src="{{ url(config('path.avatar').Auth::user()->avatar)}}" title="{{Auth::user()->username}}" class="img-circle sizeimage">
                   </li>
-                  <li><a href="#">{{Auth::user()->username}}</a></li> 
+                  <li><a href="{{ route('profile.index')}}">{{Auth::user()->username}}</a></li> 
                   <li><a href="{{ route('logout') }}">{{ trans('lang_admin.sign_out') }}</a></li> 
                 @else
                   <li><a href="{{ route('login') }}">{{ trans('lang_user.login') }}</a></li>

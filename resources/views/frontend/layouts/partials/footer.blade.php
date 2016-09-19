@@ -8,7 +8,7 @@
 					<li><a href="{{ route('home') }}" class="active">{{ trans('lang_user.homepage') }}</a></li>
           <li><a href="#">{{ trans('lang_user.place') }}</a></li>
           <li><a href="#">{{ trans('lang_user.food_store') }}</a></li>
-          <li><a class="active" href="#">{{ trans('lang_user.food') }}</a></li>
+          <li><a class="active" href="{{ route('home') }}">{{ trans('lang_user.food') }}</a></li>
           <li><a href="#">{{ trans('lang_user.type') }}</a></li>
           <li><a href="#">{{ trans('lang_user.contact') }}</a></li>
 				</ul>
