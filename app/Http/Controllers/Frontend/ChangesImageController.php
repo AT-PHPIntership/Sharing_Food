@@ -36,6 +36,7 @@ class ChangesImageController extends Controller
         $folderPath = config('path.avatar');
         $file = $request->file('file');
         $filename = '';
+        $upload = '';
         if (null != $file) {
             $filename = time() . '_'.$file->getClientOriginalName().'.'. $file->getClientOriginalExtension();
             $upload = $file->move($folderPath, $filename);
