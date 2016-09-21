@@ -48,7 +48,7 @@ function addNewLogo(input){
 
 var submitImageForm = function(form){
     $.ajax({
-        url: "http://sharingfood.app/profile/upload", //api upload phía server
+        url: pathprofile, //api upload phía server
         type: "POST",
         data: new FormData(form),
         contentType: false,

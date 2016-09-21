@@ -9,4 +9,5 @@
 <link href="{{ url('frontend/css/style.css') }}" rel="stylesheet" type="text/css" media="all"/>
 <link href="{{ url('frontend/css/animate.css') }}" rel="stylesheet" type="text/css" media="all">
 <link href="{{ url('frontend/css/search.css') }}" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" type="text/css" href="{{ asset('bower/jquery-ui/themes/base/jquery-ui.min.css') }}">
 @yield('header')

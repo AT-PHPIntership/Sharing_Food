@@ -16,4 +16,9 @@ return [
     'path_register' => '/register',
     'formatdate' => 'Y-m-d',
     'comment' => '/comment',
+    'pathprofile' => 'profile/upload',
+    'pathjsonsearch' => '/search/api',
+    'pathresultsearch' => '/search/result',
+    'pathfoodresult' =>'food/',
+    'pathfoodresultimg' =>'uploads/foods/',
 ];
