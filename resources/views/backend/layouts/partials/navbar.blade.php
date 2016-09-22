@@ -145,7 +145,6 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('admin.user.index') }}"><i class="fa fa-user"></i> {{ trans('lang_admin.list_users') }}</a></li>
-            <li><a href="#"><i class="fa fa-eye"></i> {{ trans('lang_admin.list_roles') }}</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -157,6 +156,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('admin.food.index') }}"><i class="fa fa-heart"></i> {{ trans('lang_admin.list_foods') }}</a></li>
+            <li><a href="{{ route('admin.food_accept.index') }}"><i class="fa fa-eye"></i> {{ trans('lang_admin.list_roles') }}</a></li>
           </ul>
         </li>
         <li class="treeview">

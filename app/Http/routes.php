@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth','roleadmin']], function () {
     Route::group(['prefix'=>'admin', 'namespace' => 'Backend'], function () {
         Route::resource('user', 'UserController');
         Route::resource('food', 'FoodController');
+        Route::resource('food_accept', 'FoodAcceptController');
         Route::resource('foodstore', 'FoodStoreController');
         Route::resource('type', 'TypeController');
     });

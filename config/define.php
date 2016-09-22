@@ -20,4 +20,5 @@ return [
     'result_cmt' => 0,
     'profile_time' => 400,
     'success' => 200,
+    'accept' => 0,
 ];

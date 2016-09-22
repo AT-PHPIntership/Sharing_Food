@@ -41,7 +41,7 @@ return [
     'statistical' => 'Statistical',
     'user_manager' => 'User Manager',
     'list_users' => 'List Users',
-    'list_roles' => 'List Roles',
+    'list_roles' => 'List Food need accept',
     'foods_manager' => 'Foods Manager',
     'list_foods' => 'List Food',
     'foods_store_manager' => 'Foods Store Manager',
