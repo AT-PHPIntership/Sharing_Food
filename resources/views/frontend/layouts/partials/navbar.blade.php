@@ -14,10 +14,11 @@
                 </div>               
                 <div class="col-md-4">
                     <form action="" class="search-form">
-                        <div class="form-group has-feedback">
+                      <div class="form-group has-feedback">
+                        <input type="hidden" name="_token" value="{{ Session::token() }}" />
                         <label for="search" class="sr-only">{{ trans('lang_user.search') }}</label>
-                        <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                          <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        <input type="text" class="form-control" name="search" id="search" placeholder="Search food">
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
                       </div>
                     </form>
                 </div>

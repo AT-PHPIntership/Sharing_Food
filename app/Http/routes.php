@@ -13,6 +13,8 @@
 Route::get('/login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
 Route::post('/login', ['uses' => 'AuthController@postLogin']);
 Route::post('/register', ['as' => 'register','uses' => 'AuthController@postRegister']);
+Route::get('/search/api', ['uses' => 'Frontend\SearchController@getjson']);
+Route::post('/search/result', ['uses' => 'Frontend\SearchController@getresuch']);
 /* Login with social network */
 Route::get('social/facebook', ['as'=>'facebook','uses'=>'FacebookController@getSocialAuth']);
 Route::get('social/callback/facebook', ['uses'=>'FacebookController@getSocialAuthCallback']);

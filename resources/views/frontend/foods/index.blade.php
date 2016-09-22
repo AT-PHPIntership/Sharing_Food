@@ -10,7 +10,7 @@
 				<h3>{{ trans('lang_user.foods.all_food') }}</h3>
 				<div class="menu-top-grids mgd1 wow bounceInRight" data-wow-delay="0.5s">
 					@foreach($foodList as $item)
-					<div class="col-md-4 menu-items">
+					<div class="col-md-4 menu-items firstdata">
 						@if($item->image)
 						<a href="{{ route('food.show',$item->id) }}"><img src="{{ url(config('path.foods').$item->image) }}" alt="{{ trans('lang_user.foods.error_image') }}" class="img-responsive sizefood" ></a>
 						@else
@@ -19,6 +19,11 @@
 						<h4><a href="{{ route('food.show',$item->id) }}">{{  $item->name_food}}</a></h4>
 					</div>
 					@endforeach
+					<div class="col-md-4 menu-items" id="food_result" style="display:none">
+						<a href="" id="food_url" ><img src="" class="img-responsive sizefood" id="img_food"></a>
+						<h4 id="food_name" class=""><a href="" id="food_name_url"></a></h4>
+					</div>
+					<div id="food_search" class="menu-items "></div>
 					<div class="text-center col-lg-12">{!! $foods->render() !!}</div>
 				  <div class="clearfix"> </div>
 				</div>

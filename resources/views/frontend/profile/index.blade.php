@@ -71,6 +71,9 @@
       </div>
     </div>
 @section('script')
+  <script type="text/javascript">
+    var pathprofile = {!! json_encode(config('path.pathprofile')) !!};
+  </script>
 	<script type="text/javascript" src="{{ url('frontend/js/profile.js') }}"></script>
 @endsection
 @endsection
