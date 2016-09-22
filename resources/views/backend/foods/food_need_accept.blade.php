@@ -38,7 +38,8 @@
                             <td>
                                 <form method="POST">
                                     <input type="hidden" name="food_accept_id" id="food_accept_id" value="{{ $item ->id }}">
-                                    <button class="btn btn-info">{!!trans('admin_manager_food.accept' )!!}</button>
+                                    <input type="hidden" name="accept" id="accept" value="1">
+                                    <button class="btn btn-success" id="accept_food">{!!trans('admin_manager_food.accept' )!!}</button>
                                 </form>
                             </td>
                             <td>
@@ -58,6 +59,9 @@
     </div>                      
 </div>
 @section('script')
+    <script type="text/javascript">
+        var pathaccept = {!! json_encode(config('path.pathaccept')) !!};
+    </script>
     <script type="text/javascript" src="{{ asset('backend/js/acceptfood.js') }}"></script>
 @endsection
 @endsection

@@ -21,4 +21,5 @@ return [
     'pathresultsearch' => '/search/result',
     'pathfoodresult' =>'food/',
     'pathfoodresultimg' =>'uploads/foods/',
+    'pathaccept' => 'accept',
 ];

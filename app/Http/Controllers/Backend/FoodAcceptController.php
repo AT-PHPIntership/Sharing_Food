@@ -56,7 +56,7 @@ class FoodAcceptController extends Controller
     public function index()
     {
         $foods= $this->foodrepo->findByField('accept', config('define.accept'));
-        return view('backend.foods.food_need_accept',compact('foods'));
+        return view('backend.foods.food_need_accept', compact('foods'));
     }
 
     /**
@@ -102,11 +102,9 @@ class FoodAcceptController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
         //
     }
@@ -114,7 +112,8 @@ class FoodAcceptController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -137,10 +136,10 @@ class FoodAcceptController extends Controller
             } else {
                 Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('admin_manager_food.delete_fail'));
             }
-            return redirect() -> route('admin.food.index');
+            return redirect() -> route('admin.food_accept.index');
         } catch (Exception $ex) {
             Session::flash(trans('lang_admin_manager_user.danger_cf'), trans('lang_admin_manager_user.no_id'));
-            return redirect() -> route('admin.food.index');
+            return redirect() -> route('admin.food_accept.index');
         }
     }
 }

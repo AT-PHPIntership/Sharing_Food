@@ -52,4 +52,6 @@ return [
     'copyright' => 'Copyright &copy; 2016-2020',
     'almsaeed_studio' => 'Almsaeed Studio',
     'reserved' => 'All rights reserved.',
+    'mes' => 'mes',
+    
 ];

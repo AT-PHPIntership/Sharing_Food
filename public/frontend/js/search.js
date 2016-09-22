@@ -23,7 +23,7 @@ function setAutocomplete(){
 
 $(document).keypress(function(event){
   var keycode = (event.keyCode ? event.keyCode : event.which);
-  if (keycode == '13') {
+  if (keycode == keypress) {
     event.preventDefault(event);
     var token = $("[name='_token']").val();
     var search = $("[name='search']").val();

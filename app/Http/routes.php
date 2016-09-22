@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth','roleadmin']], function () {
         Route::resource('food_accept', 'FoodAcceptController');
         Route::resource('foodstore', 'FoodStoreController');
         Route::resource('type', 'TypeController');
+        Route::post('accept', ['as' => 'foodaccept', 'uses' => 'AcceptController@update']);
     });
 });
 /* Link User can access */

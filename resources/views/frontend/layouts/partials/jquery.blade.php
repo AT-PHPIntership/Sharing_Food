@@ -10,5 +10,6 @@
 	var pathresultsearch = {!! json_encode(config('path.pathresultsearch')) !!};
 	var pathfoodresult = {!! json_encode(url(config('path.pathfoodresult'))) !!};
 	var pathfoodresultimg = {!! json_encode(url(config('path.pathfoodresultimg'))) !!};
+	var keypress = {!! json_encode(config('define.keypress')) !!};
 </script>
 @yield('script')

@@ -21,4 +21,5 @@ return [
     'profile_time' => 400,
     'success' => 200,
     'accept' => 0,
+    'keypress' => 13,
 ];
