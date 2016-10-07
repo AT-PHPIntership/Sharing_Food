@@ -34,4 +34,6 @@ return [
     'edit_success' => 'You edit success Food Store',
     'user_update' => 'Admin update:',
     'show_food_store' => 'Show Food Store',
+    'update_food_accept' => 'Food have accept',
+    'error_update_food_accept' => 'Food accept error',
 ];
